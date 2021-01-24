@@ -104,16 +104,21 @@ $$
 ??? 例题代码
     ```cpp
     #include <iostream>
-    const int maxn = 1e5 + 10;
-    int n, W, w[maxn], v[maxn], f[maxn];
-    int main() {
-      std::cin >> W >> n;
-      for (int i = 1; i <= n; i++) std::cin >> w[i] >> v[i];
-      for (int i = 1; i <= n; i++)
-        for (int l = w[i]; l <= W; l++)
-          if (f[l - w[i]] + v[i] > f[l]) f[l] = f[l - w[i]] + v[i];
-      std::cout << f[W];
-      return 0;
+    const int maxn = 1e4 + 5;
+    const int maxW = 1e7 + 5;
+    int n, W, w[maxn], v[maxn];
+    long long f[maxW];
+    int main()
+    {
+        std::cin >> W >> n;
+        for (int i = 1; i <= n; i++)
+            std::cin >> w[i] >> v[i];
+        for (int i = 1; i <= n; i++)
+            for (int l = w[i]; l <= W; l++)
+                if (f[l - w[i]] + v[i] > f[l])
+                    f[l] = f[l - w[i]] + v[i];
+        std::cout << f[W];
+        return 0;
     }
     ```
 
@@ -303,11 +308,11 @@ $$
 
 转移方程：
 
-如果 $f_{i,j}==f_{i-1,j} 且 f_{i,j}!=f_{i-1,j-v}+w$ 说明我们此时不选择把物品放入背包更优，方案数由 $g\_{i-1,j} 转移过来，
+如果 $f_{i,j} = f_{i-1,j}$ 且 $f_{i,j} \neq f_{i-1,j-v}+w$ 说明我们此时不选择把物品放入背包更优，方案数由 $g_{i-1,j}$ 转移过来，
 
-如果 $f_{i,j}!=f_{i-1,j} 且 f_{i,j}==f_{i-1,j-v}+w$ 说明我们此时选择把物品放入背包更优，方案数由 $g\_{i-1,j-v} 转移过来，
+如果 $f_{i,j} \neq f_{i-1,j}$ 且 $f_{i,j} = f_{i-1,j-v}+w$ 说明我们此时选择把物品放入背包更优，方案数由 $g_{i-1,j-v}$ 转移过来，
 
-如果 $f_{i,j}==f_{i-1,j} 且 f_{i,j}==f_{i-1,j-v}+w$ 说明放入或不放入都能取得最优解，方案数由 $g_{i-1,j} 和$ g\_{i-1,j-v} 转移过来。
+如果 $f_{i,j} = f_{i-1,j}$ 且 $f_{i,j} = f_{i-1,j-v}+w$ 说明放入或不放入都能取得最优解，方案数由 $g_{i-1,j}$ 和 $g_{i-1,j-v}$ 转移过来。
 
 初始条件：
 
@@ -348,6 +353,6 @@ for (int i = 0; i <= V; i++) {
 
 #### 求第 k 优解
 
-### 参考资料
+### 参考资料与注释
 
-dd 大牛（崔添翼）的背包九讲，GitHub 仓库链接： [tianyicui/pack: 背包问题九讲](https://github.com/tianyicui/pack) 。
+-  [背包问题九讲 - 崔添翼](https://github.com/tianyicui/pack) 。
