@@ -286,6 +286,7 @@ nav:
       - 形式幂级数复合|复合逆: math/poly/comp-rev.md
       - 普通生成函数: math/poly/ogf.md
       - 指数生成函数: math/poly/egf.md
+      - 在线多项式乘法: math/poly/relaxed-mult.md
     - 组合数学:
       - 排列组合: math/combinatorics/combination.md
       - 抽屉原理: math/combinatorics/drawer-principle.md
